@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="fitxa_recepta.xsl" ?>
+<receptes>
+<recepta>
+<nom>Besugo al horno</nom>
+<categoria>Pescado</categoria>
+<informacio_general>
+<foto>http://media-cache-ec0.pinimg.com/236x/7d/1c/28/7d1c28f81bdcb604a6a59b872653408c.jpg</foto>
+<comensals>4</comensals>
+<temps unitat="minutos">45</temps>
+<dificultat>Muy fácil</dificultat>
+</informacio_general>
+<ingredients>
+<ingredient quantitat="1">Besugo</ingredient>
+<ingredient quantitat="1">Limón</ingredient>
+<ingredient quantitat="1" unitat="cuchara sopera">Pan rallado</ingredient>
+<ingredient quantitat="2" unitat="dientes">Ajo</ingredient>
+<ingredient quantitat="1/2" unitat="dl">Vino blanco</ingredient>
+<ingredient>Aceite</ingredient>
+<ingredient>Perejil</ingredient>
+<ingredient>Sal</ingredient>
+</ingredients>
+<preparacio>
+<pas numero="1">Lavamos las patatas bajo el grifo a conciencia.</pas>
+<pas numero="2">Introducimos en una cazuela, cubrimos con agua, añadimos las hojas de laurel y sazonamos al gusto. Ponemos a fuego alto y, en cuanto empiece a hervir, bajamos el fuego y dejamos cocer a fuego lento durante 15 minutos.</pas>
+<pas numero="3">Sacamos y dejamos templar.</pas>
+<pas numero="4">Quitamos la piel y cortamos en rodajas gruesas.</pas>
+<pas numero="5">Colocamos las rodajas de patatas sobre una fuente de horno.</pas>
+<pas numero="6">Lavamos y sazonamos el besugo.</pas>
+<pas numero="7">Le realizamos unos cortes en el lomo, con un cuchillo afilado, e introducimos en cada corte media rodaja de limón.</pas>
+<pas numero="8">Colocamos el besugo encima de las patatas.</pas>
+<pas numero="9">En una sartén con cuatro cucharadas de aceite de oliva doramos los ajos, pelados y cortados en láminas, añadimos el caldo de pescado y el vino, removemos y vertemos sobre el besugo.</pas>
+<pas numero="10">Introducimos la fuente en el horno (en la base) que tendremos precalentado a 170º, durante 20-25 minutos, dependiendo del tamaño del besugo.</pas>
+<pas numero="11">Comprobamos que el besugo está hecho y sacamos del horno.</pas>
+</preparacio>
+</recepta>
+</receptes>
