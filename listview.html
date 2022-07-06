@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <meta charset="utf-8" />
+
+
+ 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     <link rel="stylesheet" type="text/css" media="only screen and (min-width:50px) and (max-width:500px)"   href="css/smallLayout.css">
+
+<style type="text/css">
+  .foto_thumb {
+    border-radius: 15%;
+  }
+
+
+.foto_pagina {
+      width: : 300px;
+      height: : 225px;
+      padding-left: 10px;
+      border-radius: 10%;
+}
+
+.titol_recepta {
+    color: #aabbcc;
+    font-size: 18px;
+    text-decoration: bold;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.titol_pagina {
+  text-align: center;
+  color: #0000ff;
+  font-size: 24px;
+  text-decoration: bold;
+}
+
+</style>
+
+   <script type="application/javascript">
+     
+     var resultat = "";
+     var xml = "";
+
+     function inici() {
+      
+            var $select = $('#chapter_num');
+            $('<option />', { text: 'Selecciona recepta' }).appendTo($select);
+
+             $.ajax({
+
+                 type: "GET",
+
+                 url: "https://script.google.com/macros/s/AKfycbypeoLbCevayC7mROiOXpqQOpGEeLYVey-rT0ErbksLVgi7-eco/exec?accio=xml&id=0",
+
+                 dataType: "xml",
+
+                 success: function(xml) {
+                    resultat = xml;
+
+                     $(xml).find('recepta').each(function(){
+                         var categoria = $(this).find('categoria').text() ;
+                         var name_text = $(this).find('titol').text() ;
+                         var foto = $(this).find("informacio_general").children("foto_recepta").text();
+                         var id = $(this).attr('id');
+
+                         $('#articleList').append('<li id="' + id + '"><a href="#chapter?id=' + id +'"><img src="' + foto + '" class="foto_thumb" />' + name_text +  '</a></li>');   
+                         $('<option />', { text: name_text, value: id}).appendTo($select);
+
+                     }); //close each(
+                      $('#articleList').listview('refresh');
+
+                 }
+
+             }); //close $.ajax(
+
+    }  // fi inici
+
+
+
+$(document).ready(function(){
+      $('body #articleList').on('click', 'li', function(){
+        var id = $(this).attr('id');
+       
+       buscar(id);
+      })
+
+    $('body #chapter_num').on('click', 'option' , function() {
+     var id0 = $(this).val();
+   
+    buscar(id0) ;
+});
+
+/*
+$(document).on("click", "a", function(){
+    alert('hola');
+    var id0 = $(this).val();
+    buscar(id0);
+
+});
+*/
+
+   $('body #inici').on('click', '' , function() {
+     var url0 = $('#inici').attr("href");
+     var id0 = url0.substr(url0.lastIndexOf("id") + 3);
+      buscar(id0) ;     
+            
+});
+
+$('body #seguent').on('click', '' , function() {
+     var url0 = $('#seguent').attr("href");
+     var id0 = url0.substr(url0.lastIndexOf("id") + 3);
+      buscar(id0) ;     
+            
+});
+
+
+    });
+
+
+
+
+
+
+function buscar(id0) {
+
+                     $(resultat).find('recepta').each(function(){
+                       var id = $(this).attr('id');
+                       if(id==id0)
+                    {
+
+                         var categoria = $(this).find('categoria').text() ;
+                         var titol = $(this).find('titol').text() ;
+                         var foto = $(this).find("informacio_general").children("foto_recepta").text();
+                         var comensals = $(this).find("informacio_general").children("comensals").text();
+                         var temps = $(this).find("informacio_general").children("temps").text();
+                         var uni_temps = $(this).find("informacio_general").children("temps").attr("unitat");
+                         var dificultat = $(this).find("informacio_general").children("dificultat").text();
+                         var html2 = '<div class="titol_recepta" id="titol_recepta">'+titol+'</div>';
+                             html2 = html2 + '<div class="foto_pagina" id="foto_pagina"><img src="' + foto +'"/>';  
+                    
+                       
+                        
+
+                      
+
+                      //$('#chapter_content').append('<div data-xml="https://script.google.com/macros/s/AKfycbyS_dKwgxd3Ef4FxAQUtgwwjh3lhf5dzchqgu0o/exec?accio=xml&id='+id0+'" data-xslt="fitxa_recepta.xsl"></div>');
+
+                        displayResult(id0);
+                                           }
+
+                     }); //close each(
+                      // $('#chapter_content').chapter_content('refresh');
+
+                 }
+
+             
+    
+
+
+function loadXMLDoc(filename)
+{
+if (window.ActiveXObject)
+  {
+  xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  }
+else
+  {
+  xhttp = new XMLHttpRequest();
+  }
+xhttp.open("GET", filename, false);
+try {xhttp.responseType = "msxml-document"} catch(err) {} // Helping IE11
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function displayResult(id0)
+{
+var numero = $("select").find("option").length ;
+if(id0 ==1)   $('#inici').attr('href','#home');
+t= posicio(id0) ;
+
+
+if(t <numero)  $('#seguent').attr('href','#chapter?id=' + document.getElementById('chapter_num').options[t+1].value );
+if(t >1)   $('#inici').attr('href','#chapter?id=' + document.getElementById('chapter_num').options[t-1].value );
+
+
+
+
+
+var url_xml = "https://script.google.com/macros/s/AKfycbyS_dKwgxd3Ef4FxAQUtgwwjh3lhf5dzchqgu0o/exec?accio=xml&id="+id0 ;  
+xml = loadXMLDoc(url_xml);
+
+xsl = loadXMLDoc("fitxa_recepta_mobile.xsl");
+
+// code for IE
+if (window.ActiveXObject || xhttp.responseType == "msxml-document")
+  {
+  ex = xml.transformNode(xsl);
+
+  document.getElementById("chapter").innerHTML = ex;
+  }
+// code for Chrome, Firefox, Opera, etc.
+else if (document.implementation && document.implementation.createDocument)
+  {
+  xsltProcessor = new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  resultDocument = xsltProcessor.transformToFragment(xml, document);
+
+   $("#chapter_content").empty();
+    //document.getElementById("chapter_content").empty()   ;
+    document.getElementById("chapter_content").appendChild(resultDocument);
+    $("#chapter_num").val(id0);
+    $('html,body').animate({scrollTop:0},{duration:"slow"});
+  }
+}
+
+
+
+
+/*
+ $(document).on('pagebeforeshow', '#home', function(e,data) {
+      if ( typeof data.toPage === "string" ) {
+      var url = $.mobile.path.parseUrl( data.toPage ), regex = /^#chapter/;
+       if ( url.hash.search(regex) !== -1 ) {
+         var id = data.toPage.substr(data.toPage.lastIndexOf("id") + 1).substr(4);
+         alert(id);
+
+        e.preventDefault()
+              }
+   }
+});
+
+
+*/
+
+function posicio(id)
+{
+
+var tmsel = document.getElementById('chapter_num').length;
+var t;
+
+for(var z = 0; z < tmsel; z++)
+{
+if(document.getElementById('chapter_num').options[z].value == id )
+{
+ t=z ;      
+}
+}
+return t ;
+}
+
+
+
+
+     </script>  
+
+ </head>
+
+ <body onload="inici(); ">
+
+<div id="home" data-role="page">
+    <div data-role="header" data-theme="c"><h1>Receptes de cuina</h1></div>
+    <div data-role="content" id="llista">
+    <ul data-role="listview" data-filter="true" id="articleList"></ul>
+
+      
+
+</div>
+</div>
+
+
+
+
+<div data-role="page" id="chapter">
+
+     <div data-role="header" data-position="fixed" data-theme="b">
+      <a href="#home" id ="inici" data-role="button" data-icon="home" data-iconpos="notext">Home</a>
+      <span id="titol" class="titol_pagina"></span>
+      <a id="seguent"  href="#" data-role="button" class="next" data-icon="forward" data-iconpos="notext">Next</a>
+   </div>
+
+
+    <div data-role="chapter_content" id="chapter_content"></div>
+
+   <div data-role="footer" data-theme="d">
+      <span class="ui-title" />
+      <label for="chapter_num">Receptes:</label>
+      <select name="chapter_num" id="chapter_num" data-mini="true"></select>
+</div>
+
+</div>
+
+
+
+   </body>
+
+ </html>
