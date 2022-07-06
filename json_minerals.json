@@ -1,0 +1,19 @@
+{
+"Minerals" :
+[
+{
+"nom" : "Galena",
+"composicio": "PbS",
+"grup": "Sulfurs",
+"duresa" : 2.5,
+"jaciments" : ["Bellmunt","Prats de Molló" , "Rocabruna"]
+},
+{
+"nom" : "Calcita",
+"composicio": "CaCO3",
+"grup": "Carbonats",
+"duresa" : 2.5 ,
+"jaciments" : ["Manresa","La Bastida" , "la Torre de Cabdella","Rovabruna","Greixa"]
+}
+]
+}
