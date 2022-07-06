@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<musica>
+    <cancion>
+		<artista>John Legend</artista>
+		<album>Love in the Future</album>
+		<titulo>All of Me </titulo>
+		<genero>Soul</genero>
+		<portada>http://cursxml.tk/musica/portada_all_of_me.jpg</portada>
+		<audio>http://cursxml.tk/musica/all_of_me.mp3</audio>
+	</cancion>
+	<cancion>
+		<artista>Micky Nuñez</artista>
+		<album>Amuza</album>
+		<titulo>Escriurem</titulo>
+		<genero>Pop</genero>
+		<portada>http://cursxml.tk/musica/portada_escriurem.jpg</portada>
+		<audio>http://cursxml.tk/musica/escriurem.mp4</audio>
+	</cancion>
+	<cancion>
+		<artista>Txarango</artista>
+		<album> Una Lluna a l'Aigua</album>
+		<titulo> Una Lluna a l'Aigua</titulo>
+		<genero>Pop</genero>
+		<portada>http://cursxml.tk/musica/portada_lluna_aigua.jpg</portada>
+		<audio>http://cursxml.tk/musica/lluna_aigua.m4a</audio>
+	</cancion>
+</musica>
